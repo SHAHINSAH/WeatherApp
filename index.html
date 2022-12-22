@@ -27,8 +27,7 @@
             document.addEventListener("click",()=>{
             naam=document.getElementById('in').value; 
             link = `https://api.openweathermap.org/data/2.5/weather?q=${naam}&appid=4a4f1ce1953c34c9ba2088f874784df5`;
-   
-    var request = new XMLHttpRequest();
+       var request = new XMLHttpRequest();
     request.open('GET',link,true);
     request.onload = function(){
         var obj = JSON.parse(this.response);
