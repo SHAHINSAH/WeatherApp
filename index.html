@@ -10,7 +10,7 @@
 <body>
     
         <div class="container">
-        <input id="in" placeholder="Enter city name" type="text">
+        <input id="in" placeholder="EnterCityName & press Enter" type="text">
         <p style="padding: .5rem;"><u>Temperature:- Celsius</u></p>
         <h4 style="padding: .5rem;">Country code:- <span id="co"></span></h4>
         <div class="card">
@@ -24,8 +24,12 @@
 </body>
 <script type="text/javascript">
             var naam="";
-            document.addEventListener("click",()=>{
-            naam=document.getElementById('in').value; 
+            document.addEventListener("keypress",(e)=>{
+                if(e.key==="Enter"){
+                    naam=document.getElementById('in').value; 
+                }
+
+            
             link = `https://api.openweathermap.org/data/2.5/weather?q=${naam}&appid=4a4f1ce1953c34c9ba2088f874784df5`;
        var request = new XMLHttpRequest();
     request.open('GET',link,true);

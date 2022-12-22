@@ -3,6 +3,13 @@
     padding: 0px;
     
 }
+input{
+    color: black;
+    width: 12rem;
+    height: 1rem;
+    border-radius: 2px;
+ 
+}
 .container{
    margin: 100px 300px;
 }
