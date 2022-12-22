@@ -4,37 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BiharWeather</title>
+    <title>PatnaWeather</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
-    <div class="container">
-        <p style="padding: .5rem;">Temperature:- Celsius</p>
+        <div class="container">
+        <input id="in" placeholder="Enter city name" type="text">
+        <p style="padding: .5rem;"><u>Temperature:- Celsius</u></p>
+        <h4 style="padding: .5rem;">Country code:- <span id="co"></span></h4>
         <div class="card">
             <h2><span id="location"></span></h2>
             <h6 id="weather"></h6>
-            
             <p id="temp"><sup>o</sup>C</p>
-            
-            <img src="" id="icon">
+             <img src="" id="icon">
             <button onclick="window.location.reload()" class="refresh">Refresh</button>
         </div>
     </div>
 </body>
 <script type="text/javascript">
-    link = "https://api.openweathermap.org/data/2.5/weather?q=patna&appid=4a4f1ce1953c34c9ba2088f874784df5";
+            var naam="";
+            document.addEventListener("click",()=>{
+            naam=document.getElementById('in').value; 
+            link = `https://api.openweathermap.org/data/2.5/weather?q=${naam}&appid=4a4f1ce1953c34c9ba2088f874784df5`;
+   
     var request = new XMLHttpRequest();
     request.open('GET',link,true);
     request.onload = function(){
         var obj = JSON.parse(this.response);
         console.log(obj);
+       
+      
         document.getElementById('weather').innerHTML=obj.weather[0].description;
         document.getElementById('location').innerHTML=obj.name;
+        
+        document.getElementById('co').innerHTML=obj.sys.country;
         document.getElementById('temp').innerHTML=Math.round(obj.main.temp - 273.15);
         document.getElementById('icon').src= "https://openweathermap.org/img/w/" + obj.weather[0].icon + ".png";
-
-             
     }
     if(request.status>=200 && request.status < 400){
         var temp=obj.main.temp;
@@ -43,5 +49,6 @@
         console.log("city data not avl");
     }
     request.send();
+}); 
 </script>
 </html>
